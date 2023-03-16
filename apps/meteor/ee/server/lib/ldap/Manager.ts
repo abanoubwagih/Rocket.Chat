@@ -529,12 +529,12 @@ export class LDAPEEManager extends LDAPManager {
 			let count = 0;
 
 			ldap.searchAllUsers<IImportUser>({
-				entryCallback: (entry: ldapjs.SearchEntry): IImportUser | undefined => {
+				entryCallback: async (entry: ldapjs.SearchEntry): Promise<IImportUser | undefined> => {
 					const data = ldap.extractLdapEntryData(entry);
 					count++;
 
 					const userData = this.mapUserData(data);
-					converter.addUser(userData);
+					await converter.addUser(userData);
 					return userData;
 				},
 				endCallback: (error: any): void => {
@@ -558,7 +558,7 @@ export class LDAPEEManager extends LDAPManager {
 
 			if (ldapUser) {
 				const userData = this.mapUserData(ldapUser, user.username);
-				converter.addUser(userData);
+				await converter.addUser(userData);
 			}
 		}
 	}
