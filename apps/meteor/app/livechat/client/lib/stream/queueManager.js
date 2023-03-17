@@ -5,6 +5,7 @@ import { LivechatInquiry } from '../../collections/LivechatInquiry';
 import { inquiryDataStream } from './inquiry';
 import { callWithErrorHandling } from '../../../../../client/lib/utils/callWithErrorHandling';
 import { CustomSounds } from '../../../../custom-sounds/client/lib/CustomSounds';
+import { Notifications } from '../../../../notifications/client';
 
 const departments = new Set();
 
@@ -36,7 +37,11 @@ const events = {
 			newInquirySound();
 		}
 	},
-	removed: (inquiry) => LivechatInquiry.remove(inquiry._id),
+	removed: (inquiry) => {
+		const userId = Meteor.userId();
+		Notifications.notifyUser(userId, 'rooms-changed', 'changed', { ...inquiry, _id: inquiry.rid });
+		return LivechatInquiry.remove(inquiry._id);
+	},
 };
 
 const updateCollection = (inquiry) => {
