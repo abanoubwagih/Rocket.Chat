@@ -47,7 +47,8 @@
 							"attributes": false
 						}
 					}
-				]
+				],
+				"no-unreachable-loop": "error"
 			},
 			"parserOptions": {
 				"project": ["./tsconfig.json"]
