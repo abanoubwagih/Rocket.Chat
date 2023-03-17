@@ -241,9 +241,6 @@ export class SlackImporter extends Base {
 
 			for await (const entry of zip.getEntries()) {
 				try {
-					console.log('------------------------------------------------');
-					console.log(entry.entryName);
-					console.log(entry);
 					if (entry.entryName.includes('__MACOSX') || entry.entryName.includes('.DS_Store')) {
 						count++;
 						this.logger.debug(`Ignoring the file: ${entry.entryName}`);
