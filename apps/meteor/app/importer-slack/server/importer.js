@@ -191,9 +191,6 @@ export class SlackImporter extends Base {
 
 		try {
 			// we need to iterate the zip file twice so that all channels are loaded before the messages
-			console.log('------------------');
-			console.log(zip.getEntries());
-
 			for await (const entry of zip.getEntries()) {
 				try {
 					if (entry.entryName === 'channels.json') {
