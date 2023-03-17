@@ -174,6 +174,8 @@ export class LivechatDepartmentAgentsRaw extends BaseRaw<ILivechatDepartmentAgen
 			},
 			{
 				$set: {
+					agentId: agent.agentId,
+					departmentId: agent.departmentId,
 					username: agent.username,
 					departmentEnabled: agent.departmentEnabled,
 					count: parseInt(`${agent.count}`),
@@ -351,6 +353,14 @@ export class LivechatDepartmentAgentsRaw extends BaseRaw<ILivechatDepartmentAgen
 		};
 
 		return this.updateMany(query, update);
+	}
+
+	countAgentsByDepartmentId(departmentId: string): Promise<number> {
+		const query = {
+			departmentId,
+		};
+
+		return this.col.countDocuments(query);
 	}
 }
 
