@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
+import { LivechatInquiry } from '@rocket.chat/models';
 
 import { hasPermission } from '../../../authorization/server';
-import { Users, LivechatInquiry } from '../../../models/server';
+import { Users } from '../../../models/server';
 import { RoutingManager } from '../lib/RoutingManager';
 
 Meteor.methods({
@@ -12,7 +13,7 @@ Meteor.methods({
 			});
 		}
 
-		const inquiry = LivechatInquiry.findOneById(inquiryId);
+		const inquiry = await LivechatInquiry.findOneById(inquiryId);
 
 		if (!inquiry) {
 			throw new Meteor.Error('error-not-found', 'Inquiry not found', {
