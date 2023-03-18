@@ -58,3 +58,4 @@ import './VoipRoom';
 import './WebdavAccounts';
 import './Imports';
 import './RawImports';
+import './FederationRoomEvents';
