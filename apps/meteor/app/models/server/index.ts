@@ -10,6 +10,5 @@ import AppsModel from './models/apps-model';
 
 export { AppsLogsModel } from './models/apps-logs-model';
 export { AppsPersistenceModel } from './models/apps-persistence-model';
-export { FederationRoomEvents } from './models/FederationRoomEvents';
 
 export { AppsModel, Base, BaseDb, Messages, Rooms, Subscriptions, Users, LivechatDepartment, LivechatRooms };
